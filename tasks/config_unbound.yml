@@ -1,4 +1,5 @@
 ---
+
 - name: config_unbound | configuring unbound
   template:
     src: "etc/unbound/unbound.conf.d/local.conf.j2"
@@ -8,3 +9,5 @@
     mode: "u=rw,g=r,o=r"
   become: true
   notify: "restart unbound"
+
+...

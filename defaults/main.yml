@@ -96,3 +96,5 @@ unbound_optimizations:
 
 # Default is to use syslog, which will log to /var/log/messages.
 unbound_use_syslog: true
+
+...
