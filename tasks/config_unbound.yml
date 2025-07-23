@@ -1,9 +1,19 @@
 ---
 
+- name: config_unbound | top-level config
+  template:
+    src: "etc/unbound/unbound.conf.j2"
+    dest: "{{ (unbound_config_dir, 'unbound.conf') | path_join }}"
+    owner: "root"
+    group: "root"
+    mode: "u=rw,g=r,o=r"
+  become: true
+  notify: "restart unbound"
+
 - name: config_unbound | configuring unbound
   template:
     src: "etc/unbound/unbound.conf.d/local.conf.j2"
-    dest: "{{ unbound_config_dir }}/local.conf"
+    dest: "{{ (unbound_config_dir, 'unbound.conf.d', 'local.conf') | path_join }}"
     owner: "root"
     group: "root"
     mode: "u=rw,g=r,o=r"

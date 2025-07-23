@@ -38,7 +38,7 @@ unbound_cache_max_ttl: 86400
 unbound_cache_min_ttl: 0
 
 # Defines unbound configuration directory
-unbound_config_dir: '/etc/unbound/unbound.conf.d'
+unbound_config_dir: '/etc/unbound'
 
 # Defines if unbound pre-fetch should be enabled
 unbound_enable_prefetch: false
