@@ -1,0 +1,3 @@
+[submodule "molecule"]
+	path = molecule
+	url = git@github.com:AkaBlur/molecule-podman-scenarios.git
