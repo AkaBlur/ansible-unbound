@@ -1,5 +1,16 @@
 # Ansible UnBound
 
+[![AlmaLinux 9](https://github.com/AkaBlur/ansible-unbound/actions/workflows/almalinux-9.yml/badge.svg?branch=master)](https://github.com/AkaBlur/ansible-unbound/actions/workflows/almalinux-9.yml)
+[![AlmaLinux 10](https://github.com/AkaBlur/ansible-unbound/actions/workflows/almalinux-10.yml/badge.svg?branch=master)](https://github.com/AkaBlur/ansible-unbound/actions/workflows/almalinux-10.yml)
+[![CentOS Stream 9](https://github.com/AkaBlur/ansible-unbound/actions/workflows/centosstream-9.yml/badge.svg?branch=master)](https://github.com/AkaBlur/ansible-unbound/actions/workflows/centosstream-9.yml)
+[![CentOS Stream 10](https://github.com/AkaBlur/ansible-unbound/actions/workflows/centosstream-10.yml/badge.svg?branch=master)](https://github.com/AkaBlur/ansible-unbound/actions/workflows/centosstream-10.yml)
+
+[![Debian 12](https://github.com/AkaBlur/ansible-unbound/actions/workflows/debian-12.yml/badge.svg?branch=master)](https://github.com/AkaBlur/ansible-unbound/actions/workflows/debian-12.yml)
+[![Debian 13](https://github.com/AkaBlur/ansible-unbound/actions/workflows/debian-13.yml/badge.svg?branch=master)](https://github.com/AkaBlur/ansible-unbound/actions/workflows/debian-13.yml)
+[![Ubuntu 22.04](https://github.com/AkaBlur/ansible-unbound/actions/workflows/ubuntu-2204.yml/badge.svg?branch=master)](https://github.com/AkaBlur/ansible-unbound/actions/workflows/ubuntu-2204.yml)
+[![Ubuntu 24.04](https://github.com/AkaBlur/ansible-unbound/actions/workflows/ubuntu-2404.yml/badge.svg?branch=master)](https://github.com/AkaBlur/ansible-unbound/actions/workflows/ubuntu-2404.yml)
+[![Ubuntu 26.04](https://github.com/AkaBlur/ansible-unbound/actions/workflows/ubuntu-2604.yml/badge.svg?branch=master)](https://github.com/AkaBlur/ansible-unbound/actions/workflows/ubuntu-2604.yml)
+
 Ansible role to install UnBound on the target hosts. Configures basic settings
 and sets up a complete recursive DNS resolver.
 
