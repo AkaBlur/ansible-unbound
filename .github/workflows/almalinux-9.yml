@@ -1,6 +1,6 @@
 ---
 
-name: AlmaLinux 9 CI
+name: AlmaLinux 9
 
 on:
   push:
