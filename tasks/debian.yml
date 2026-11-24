@@ -1,0 +1,14 @@
+---
+
+- name: "[Debian] Install unbound"
+  ansible.builtin.apt:
+    name: unbound
+    state: present
+    update_cache: true
+  become: true
+
+- name: "[Debian] Install unbound-anchor"
+  ansible.builtin.apt:
+    name: unbound-anchor
+    state: present
+  become: true

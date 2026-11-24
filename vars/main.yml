@@ -1,0 +1,7 @@
+---
+
+unbound_dir_config: "/etc/unbound"
+unbound_dir_config_subdir: "/etc/unbound/unbound.conf.d"
+unbound_dir_trust_anchor: "/usr/local/etc/unbound"
+
+unbound_file_config: "unbound.conf"

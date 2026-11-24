@@ -1,0 +1,8 @@
+{{ ansible_managed | comment }}
+
+server:
+    # send as little information upstream as possible
+    qname-minimisation: yes
+
+    # enhance cache usage for NSEC
+    aggressive-nsec: yes

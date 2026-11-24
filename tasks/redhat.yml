@@ -1,0 +1,7 @@
+---
+
+- name: "[RedHat] Install unbound"
+  ansible.builtin.dnf:
+    name: unbound
+    state: present
+  become: true

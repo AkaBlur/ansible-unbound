@@ -1,0 +1,30 @@
+---
+
+unbound_conf_rmt_control: false
+
+unbound_conf_interface: "0.0.0.0"
+
+# enable security-hardening settings
+# - enable QNAME minimization
+unbound_conf_security_harden: true
+
+# enable stale cache data serving
+# - increases cache-hits (when not reaching resolver in 1.8 s)
+# - TTL of stale data set to conservative limits (4h)
+unbound_conf_serve_stale: true
+
+# configure IP ranges to allow for inbound DNS queries
+unbound_conf_allow_ip_ranges:
+#  - "10.0.0.0/24"
+#  - "10.10.0.0/24"
+#  - "10.10.0.10/24"
+
+# overrides for local-zone entries
+unbound_conf_local_zone:
+# - set zone .internal to non-default, (but already covered by some IETF note)
+#   won't be available for regular lookups anymore
+#  - { zone: ".internal", rule: "nodefault" }
+
+# add custom local-data entries
+unbound_conf_local_data:
+#  - "admin.internal A 10.10.11.10"

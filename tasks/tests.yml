@@ -1,0 +1,51 @@
+---
+
+# basic directories
+- name: Check directories exist
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  register: check_dir
+  failed_when:
+    - check_dir.stat.isdir is not defined
+    - not check_dir.stat.isdir
+    - check_dir.stat.pw_name != "root"
+    - check_dir.stat.gr_name != "root"
+    - not check_dir.stat.rusr
+    - not check_dir.stat.wusr
+    - check_dir.stat.woth
+    - check_dir.stat.xoth
+  loop:
+    - "{{ unbound_dir_config }}"
+    - "{{ unbound_dir_config_subdir }}"
+    - "{{ unbound_dir_trust_anchor }}"
+
+- name: Check files exist
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  register: check_file
+  failed_when:
+    - check_file.stat.isreg is not defined
+    - not check_file.stat.isreg
+    - check_file.stat.pw_name != "root"
+    - check_file.stat.gr_name != "root"
+    - not check_file.stat.rusr
+    - not check_file.stat.wusr
+    - check_file.stat.woth
+    - check_file.stat.xoth
+  loop:
+    - "{{ (unbound_dir_trust_anchor, 'root.key') | path_join }}"
+    - "{{ (unbound_dir_config, 'unbound.conf') | path_join }}"
+    - "{{ (unbound_dir_config_subdir, 'optimizations.conf') | path_join }}"
+    - "{{ (unbound_dir_config_subdir, 'privacy.conf') | path_join }}"
+
+# service-testing
+- name: Get service facts
+  ansible.builtin.service_facts:
+
+- name: Ensure unbound is running
+  ansible.builtin.assert:
+    that:
+      - "'unbound.service' in ansible_facts['services']"
+      - "ansible_facts['services']['unbound.service']['state'] == 'running'"
+    fail_msg: unbound service not running!
+    success_msg: unbound up and running

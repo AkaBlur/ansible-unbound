@@ -1,0 +1,36 @@
+galaxy_info:
+  role_name: unbound
+  namespace: akablur
+  author: AkaBlur
+  description: |
+    Installs UnBound reverse DNS resolver
+
+  license: MIT
+
+  min_ansible_version: "2.2"
+
+  platforms:
+    - name: AlmaLinux
+      versions:
+        - "9"
+        - "10"
+    - name: EL
+      versions:
+        - "9"
+        - "10"
+    - name: Debian
+      versions:
+        - "bookworm"
+        - "trixie"
+    - name: Ubuntu
+      versions:
+        - "jammy"
+        - "noble"
+        - "resolute"
+
+  galaxy_tags:
+    - "network"
+    - "dns"
+    - "resolver"
+
+dependencies: []

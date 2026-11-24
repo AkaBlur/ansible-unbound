@@ -1,0 +1,37 @@
+{{ ansible_managed | comment }}
+
+include: "{{ unbound_dir_config_subdir }}/optimizations.conf"
+include: "{{ unbound_dir_config_subdir }}/privacy.conf"
+
+remote-control:
+    control-enable: {% if unbound_conf_rmt_control -%}
+                        "yes"
+                    {%- else -%}
+                        "no"
+                    {%- endif +%}
+
+server:
+    interface: {{ unbound_conf_interface }}
+    
+    # disable to improve compatability
+    chroot: ""
+    # disable user switching
+    username: ""
+
+    auto-trust-anchor-file: "{{ (unbound_dir_trust_anchor, 'root.key') | path_join }}"
+
+{% if unbound_conf_allow_ip_ranges is iterable %}
+{% for ip in unbound_conf_allow_ip_ranges %}
+    access-control: {{ ip }} allow
+{% endfor +%}
+{% endif %}
+{% if unbound_conf_local_zone is iterable %}
+{% for local_zone in unbound_conf_local_zone %}
+    local-zone: "{{ local_zone.zone }}" {{ local_zone.rule }}
+{% endfor +%}
+{% endif %}
+{% if unbound_conf_local_data is iterable %}
+{% for local_data in unbound_conf_local_data %}
+    local-data: "{{ local_data }}"
+{% endfor +%}
+{% endif %}

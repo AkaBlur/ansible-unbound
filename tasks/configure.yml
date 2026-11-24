@@ -1,0 +1,65 @@
+---
+
+- name: Configure unbound, basic config
+  ansible.builtin.template:
+    src: unbound.conf.j2
+    dest: "{{ (unbound_dir_config, unbound_file_config) | path_join }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  become: true
+  notify:
+    - Restart unbound
+
+- name: Ensure unbound configuration directory
+  ansible.builtin.file:
+    path: "{{ unbound_dir_config_subdir }}"
+    state: directory
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  become: true
+
+- name: Ensure auto-trust-anchor directory exists
+  ansible.builtin.file:
+    path: "{{ unbound_dir_trust_anchor }}"
+    state: directory
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  become: true
+
+- name: Deploy DNSSEC trust anchor
+  ansible.builtin.command: unbound-anchor -a "{{ (unbound_dir_trust_anchor, 'root.key') | path_join }}"
+  become: true
+  args:
+    creates: "{{ (unbound_dir_trust_anchor, 'root.key') | path_join }}"
+  failed_when: false # command has non-regular exit codes (cannot indicate failure)
+
+- name: Check DNSSEC trust anchor
+  ansible.builtin.stat:
+    path: "{{ (unbound_dir_trust_anchor, 'root.key') | path_join }}"
+  register: trust_root_key
+
+- name: Check DNSSEC trust anchor exists
+  ansible.builtin.fail:
+    msg: "Could not create unbound trust-anchor file!"
+  when: trust_root_key.stat.isreg is not defined
+
+- name: Deploy security relevant settings
+  ansible.builtin.template:
+    src: privacy.conf.j2
+    dest: "{{ (unbound_dir_config_subdir, 'privacy.conf') | path_join }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  become: true
+
+- name: Deploy optimization settings
+  ansible.builtin.template:
+    src: optimizations.conf.j2
+    dest: "{{ (unbound_dir_config_subdir, 'optimizations.conf') | path_join }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  become: true
