@@ -1,6 +1,5 @@
 galaxy_info:
   role_name: unbound
-  namespace: akablur
   author: AkaBlur
   description: |
     Installs UnBound reverse DNS resolver
